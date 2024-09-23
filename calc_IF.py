@@ -14,6 +14,17 @@ def btn_click(number):
 def btn_cls():
     user_input.delete(0, END)
 
+def btn_add():
+    first_num = user_input.get()
+    global f_num
+    f_num = int(first_num)
+    user_input.delete(0, END)
+
+def btn_equals():
+    second_num = user_input.get()
+    user_input.delete(0, END)
+    user_input.insert(0, f_num + int(second_num))
+
 #defining keypad digit buttons
 btn1 = Button(root, text='1', padx=40, pady=20, command=lambda:btn_click(1))
 btn2 = Button(root, text='2', padx=40, pady=20, command=lambda:btn_click(2))
@@ -28,10 +39,10 @@ btn0 = Button(root, text='0', padx=40, pady=20, command=lambda:btn_click(0))
 
 #functional buttons
 btn_cls = Button(root, text='clear', padx=40, pady=20, command=btn_cls)
-btn_equals = Button(root, text='=', padx=40, pady=20, command=lambda:btn_click())
+btn_equals = Button(root, text='=', padx=40, pady=20, command=btn_equals)
 
 #operation buttons
-btn_add = Button(root, text='+', padx=40, pady=20, command=lambda:btn_click())
+btn_add = Button(root, text='+', padx=40, pady=20, command=btn_add)
 btn_div = Button(root, text='/', padx=40, pady=20, command=lambda:btn_click())
 btn_mult = Button(root, text='x', padx=40, pady=20, command=lambda:btn_click())
 btn_sub = Button(root, text='-', padx=40, pady=20, command=lambda:btn_click())
