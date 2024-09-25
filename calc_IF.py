@@ -3,7 +3,8 @@ from tkinter import *
 root = Tk()
 root.title('Calculator')
 
-user_input = Entry(root, width=35, borderwidth=5)
+#user_input = Entry(root, width=35, borderwidth=5)
+user_input = Entry(root, width=50, borderwidth=5)
 user_input.grid(row=0, column=0, columnspan=3, padx=10,pady=10)
 
 def btn_click(number):
@@ -17,13 +18,40 @@ def btn_cls():
 def btn_add():
     first_num = user_input.get()
     global f_num
+    global opp
+    opp = 'add'
     f_num = int(first_num)
     user_input.delete(0, END)
+
+def btn_div():
+    first_num = user_input.get()
+    global f_num
+    global opp
+    opp = 'div'
+    f_num = int(first_num)
+    user_input.delete(0, END)
+
+def btn_mult():
+    first_num = user_input.get()
+    global f_num
+    global opp
+    opp = 'mult'
+    f_num = int(first_num)
+    user_input.delete(0, END)
+
+def btn_sub():
+    return
 
 def btn_equals():
     second_num = user_input.get()
     user_input.delete(0, END)
-    user_input.insert(0, f_num + int(second_num))
+    if opp == 'add':
+        user_input.insert(0, f_num + int(second_num))
+    elif opp == 'div':
+        user_input.insert(0, f_num / int(second_num))   
+    elif opp == 'mult':
+        user_input.insert(0, f_num * int(second_num))   
+    #elif opp ==  'opp':    
 
 #defining keypad digit buttons
 btn1 = Button(root, text='1', padx=40, pady=20, command=lambda:btn_click(1))
@@ -38,14 +66,14 @@ btn9 = Button(root, text='9', padx=40, pady=20, command=lambda:btn_click(9))
 btn0 = Button(root, text='0', padx=40, pady=20, command=lambda:btn_click(0))
 
 #functional buttons
-btn_cls = Button(root, text='clear', padx=40, pady=20, command=btn_cls)
-btn_equals = Button(root, text='=', padx=40, pady=20, command=btn_equals)
+btn_cls = Button(root, text='clear', padx=31, pady=20, command=btn_cls)
+btn_equals = Button(root, text='equals', padx=27, pady=20, command=btn_equals)
 
 #operation buttons
-btn_add = Button(root, text='+', padx=40, pady=20, command=btn_add)
-btn_div = Button(root, text='/', padx=40, pady=20, command=lambda:btn_click())
-btn_mult = Button(root, text='x', padx=40, pady=20, command=lambda:btn_click())
-btn_sub = Button(root, text='-', padx=40, pady=20, command=lambda:btn_click())
+btn_add = Button(root, text='add', padx=33, pady=20, command=btn_add)
+btn_div = Button(root, text='div', padx=35, pady=20, command=btn_div)
+btn_mult = Button(root, text='mult', padx=31, pady=20, command=btn_mult)
+btn_sub = Button(root, text='sub', padx=40, pady=20, command=btn_sub)
 
 #displaying buttons
 btn1.grid(row=3, column=0)
